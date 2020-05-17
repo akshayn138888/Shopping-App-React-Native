@@ -15,24 +15,18 @@ const UserProductsScreen = props => {
   const editProductHandler = id => {
     props.navigation.navigate("EditProduct", { productId: id });
   };
+
   const deleteHandler = id => {
-    Alert.alert(
-      "Are your sure ? ",
-      "Do you really want to delete this item ? ",
-      [
-        {
-          text: "No",
-          style: "default"
-        },
-        {
-          text: "Yes",
-          style: "destructive",
-          onPress: () => {
-            dispatch(productsActions.deleteProduct(id));
-          }
+    Alert.alert("Are you sure?", "Do you really want to delete this item?", [
+      { text: "No", style: "default" },
+      {
+        text: "Yes",
+        style: "destructive",
+        onPress: () => {
+          dispatch(productsActions.deleteProduct(id));
         }
-      ]
-    );
+      }
+    ]);
   };
 
   return (
@@ -80,6 +74,7 @@ UserProductsScreen.navigationOptions = navData => {
         />
       </HeaderButtons>
     ),
+
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item

@@ -66,6 +66,7 @@ ProductsOverviewScreen.navigationOptions = navData => {
         />
       </HeaderButtons>
     ),
+
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
