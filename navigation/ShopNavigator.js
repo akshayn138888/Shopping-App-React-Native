@@ -4,6 +4,7 @@ import { createDrawerNavigator } from "react-navigation-drawer";
 import { createStackNavigator } from "react-navigation-stack";
 import { Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import EditProductScreen from "..//screens/user/EditProductScreen";
 import UserProductScreen from "../screens/user/UserProductsScreen";
 import ProductsOverviewScreen from "../screens/shop/ProductsOverviewScreen";
 import ProductDetailScreen from "../screens/shop/ProductDetailScreen";
@@ -63,7 +64,8 @@ const OrdersNavigator = createStackNavigator(
 );
 const AdminNavigator = createStackNavigator(
   {
-    UserProducts: UserProductScreen
+    UserProducts: UserProductScreen,
+    EditProduct: EditProductScreen
   },
   {
     navigationOptions: {
