@@ -8,14 +8,17 @@ import {
   StyleSheet
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
+
 import Colors from "../../constants/Colors";
 import * as cartActions from "../../store/actions/cart";
+
 const ProductDetailScreen = props => {
   const productId = props.navigation.getParam("productId");
   const selectedProduct = useSelector(state =>
     state.products.availableProducts.find(prod => prod.id === productId)
   );
   const dispatch = useDispatch();
+
   return (
     <ScrollView>
       <Image style={styles.image} source={{ uri: selectedProduct.imageUrl }} />

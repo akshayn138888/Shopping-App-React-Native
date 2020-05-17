@@ -14,13 +14,15 @@ import Colors from "../../constants/Colors";
 
 const ProductItem = props => {
   let TouchableCmp = TouchableOpacity;
+
   if (Platform.OS === "android" && Platform.Version >= 21) {
     TouchableCmp = TouchableNativeFeedback;
   }
+
   return (
     <View style={styles.product}>
       <View style={styles.touchable}>
-        <TouchableCmp onPress={props.onViewDetail} useForeGround>
+        <TouchableCmp onPress={props.onViewDetail} useForeground>
           <View>
             <View style={styles.imageContainer}>
               <Image style={styles.image} source={{ uri: props.image }} />
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "open-sans-bold",
     fontSize: 18,
-    marginVertical: 1
+    marginVertical: 2
   },
   price: {
     fontFamily: "open-sans",
