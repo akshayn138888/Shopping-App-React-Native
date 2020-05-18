@@ -7,17 +7,19 @@ export const SET_PRODUCTS = "SET_PRODUCTS";
 
 export const fetchProducts = () => {
   return async dispatch => {
-    //any async code
+    // any async code you want!
     try {
       const response = await fetch(
         "https://rn-shop-app-c5af5.firebaseio.com/products.json"
       );
+
       if (!response.ok) {
         throw new Error("Something went wrong!");
       }
 
       const resData = await response.json();
-      let loadedProducts = [];
+      const loadedProducts = [];
+
       for (const key in resData) {
         loadedProducts.push(
           new Product(
@@ -30,8 +32,10 @@ export const fetchProducts = () => {
           )
         );
       }
+
       dispatch({ type: SET_PRODUCTS, products: loadedProducts });
     } catch (err) {
+      // send to custom analytics server
       throw err;
     }
   };
@@ -45,8 +49,9 @@ export const deleteProduct = productId => {
         method: "DELETE"
       }
     );
+
     if (!response.ok) {
-      throw new Error("Something Went wrong!");
+      throw new Error("Something went wrong!");
     }
     dispatch({ type: DELETE_PRODUCT, pid: productId });
   };
@@ -54,7 +59,7 @@ export const deleteProduct = productId => {
 
 export const createProduct = (title, description, imageUrl, price) => {
   return async dispatch => {
-    //any async code
+    // any async code you want!
     const response = await fetch(
       "https://rn-shop-app-c5af5.firebaseio.com/products.json",
       {
@@ -73,7 +78,6 @@ export const createProduct = (title, description, imageUrl, price) => {
 
     const resData = await response.json();
 
-    console.log(resData);
     dispatch({
       type: CREATE_PRODUCT,
       productData: {
@@ -89,7 +93,6 @@ export const createProduct = (title, description, imageUrl, price) => {
 
 export const updateProduct = (id, title, description, imageUrl) => {
   return async dispatch => {
-    //any async code
     const response = await fetch(
       `https://rn-shop-app-c5af5.firebaseio.com/products/${id}.json`,
       {
@@ -104,9 +107,11 @@ export const updateProduct = (id, title, description, imageUrl) => {
         })
       }
     );
+
     if (!response.ok) {
-      throw new Error("Something Went wrong!");
+      throw new Error("Something went wrong!");
     }
+
     dispatch({
       type: UPDATE_PRODUCT,
       pid: id,

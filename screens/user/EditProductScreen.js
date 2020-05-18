@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useReducer } from "react";
+import React, { useState, useEffect, useCallback, useReducer } from "react";
 import {
   View,
   ScrollView,
@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 import HeaderButton from "../../components/UI/HeaderButton";
 import * as productsActions from "../../store/actions/products";
 import Input from "../../components/UI/Input";
+import Colors from "../../constants/Colors";
 
 const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
 
@@ -65,11 +66,13 @@ const EditProductScreen = props => {
     },
     formIsValid: editedProduct ? true : false
   });
+
   useEffect(() => {
     if (error) {
       Alert.alert("An error occurred!", error, [{ text: "Okay" }]);
     }
   }, [error]);
+
   const submitHandler = useCallback(async () => {
     if (!formState.formIsValid) {
       Alert.alert("Wrong input!", "Please check the errors in the form.", [
@@ -98,8 +101,8 @@ const EditProductScreen = props => {
             +formState.inputValues.price
           )
         );
-        props.navigation.goBack();
       }
+      props.navigation.goBack();
     } catch (err) {
       setError(err.message);
     }
@@ -122,6 +125,7 @@ const EditProductScreen = props => {
     },
     [dispatchFormState]
   );
+
   if (isLoading) {
     return (
       <View style={styles.centered}>
@@ -129,6 +133,7 @@ const EditProductScreen = props => {
       </View>
     );
   }
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
