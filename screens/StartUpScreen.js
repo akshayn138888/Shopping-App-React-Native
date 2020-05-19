@@ -6,11 +6,11 @@ import {
   StyleSheet,
   AsyncStorage
 } from "react-native";
-import { useDispatch } from "react-native";
+import { useDispatch } from "react-redux";
 import * as authActions from "../store/actions/auth";
 
 const StartUpScreen = props => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   useEffect(() => {
     const tryLogin = async () => {
       const userData = await AsyncStorage.getItem("userData");
@@ -26,8 +26,9 @@ const StartUpScreen = props => {
         props.navigation.navigate("Auth");
         return;
       }
+      const expirationTime = expirationDate.getTime() - new Date().getTime();
       props.navigation.navigate("Shop");
-      dispatch(authActions.authenticate(userId, token));
+      dispatch(authActions.authenticate(userId, token, expirationTime));
     };
     tryLogin();
   }, [dispatch]);
