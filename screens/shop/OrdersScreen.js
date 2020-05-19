@@ -35,6 +35,13 @@ const OrdersScreen = props => {
       </View>
     );
   }
+  if (Orders.length === 0) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>No orders found ! Make your first order with us. </Text>
+      </View>
+    );
+  }
 
   return (
     <FlatList
